@@ -4,19 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.1</version>
+        <relativePath />
+    </parent>
+
+
     <groupId>com.github.ponser2000</groupId>
-    <artifactId>maven-template-repository</artifactId>
+    <artifactId>inside_test</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Maven Repository Template</name>
+    <name>inside_test</name>
 
-    <url>https://github.com/template-repository/maven-template-repository</url>
+    <url>https://github.com/Ponser2000/inside_test</url>
 
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
          
@@ -29,38 +37,86 @@
     </developers>
          
     <properties>
-        <mockito.version>2.26.0</mockito.version>
-        <junit.version>5.5.2</junit.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <javadoc.plugin.version>3.1.1</javadoc.plugin.version>
-        <source.plugin.version>3.2.0</source.plugin.version>
+
+        <source.plugin.version>3.2.1</source.plugin.version>
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.6.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
+
+        <!--Test-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
         </dependency>
     </dependencies>
 
     <build>
+        <finalName>appInside</finalName>
+        <defaultGoal>package</defaultGoal>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -79,6 +135,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
