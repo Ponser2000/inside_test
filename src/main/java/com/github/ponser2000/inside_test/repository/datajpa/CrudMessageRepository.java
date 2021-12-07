@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface CrudMessageRepository extends JpaRepository<Message, Integer> {
 
-    List<Message> findByUserIdOrderByDateTime(int userId);
+    List<Message> findByMyUserIdOrderByDateTime(int userId);
 
 }

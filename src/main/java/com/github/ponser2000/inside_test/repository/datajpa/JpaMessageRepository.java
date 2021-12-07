@@ -24,6 +24,6 @@ public class JpaMessageRepository implements MessageRepository {
 
     @Override
     public List<Message> getAll(int userId) {
-        return crudMessageRepository.findByUserIdOrderByDateTime(userId);
+        return crudMessageRepository.findByMyUserIdOrderByDateTime(userId);
     }
 }

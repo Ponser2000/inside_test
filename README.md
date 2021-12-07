@@ -1,26 +1,64 @@
-## Overview
-Repository with preconfigured maven project with junit5 configuration on a board.
+### Описание
 
-## Building
-...
+RESTful приложение на Spring Boot.
 
-## Troubleshooting
-...
+Данное приложение позволяет пройти аутентификацию пользователя в приложении,
+в случае успеха пользователю будет выдан token<br>
+Для прохождения аутентификация пользователя необходимо послать POST запрос по адресу
 
-## Release Notes
-Can be found in [RELEASE_NOTES](RELEASE_NOTES.md).
+http://localhost:8080/authenticate
 
-## Authors
-* Sergey Ponomarev - [Ponser2000](https://github.com/Ponser2000)
+вида
 
-## Acknowledgments
-...
+```json
+{
+   "name": "имя отправителя",
+   "password": "пароль"
+}
+```
+В БД предварительно внесены два пользователя `user1:password1`,`user2:password2`
 
-## Contributing
-Please, follow [Contributing](CONTRIBUTING.md) page.
+В дальнейшем, авторизованный пользователь сможет добавить сообщение или просмотреть историю сообщений (последние 10 сообщений)
 
-## Code of Conduct
-Please, follow [Code of Conduct](CODE_OF_CONDUCT.md) page.
+Для добавления сообщения необходимо послать запрос по адресу 
 
-## License
-This project is Apache License 2.0 - see the [LICENSE](LICENSE) file for details
+http://localhost:8080/message
+
+вида
+```json
+{
+   "name":       "имя отправителя",
+   "message":    "текст сообщение"
+}
+```
+В случае, если "имя отправителя" не совпадет с текущим именем пользователя, то переданное сообщение не будет добавлено.
+
+Для просмотра последних 10 сообщений необходимо послать запрос по адресу
+
+http://localhost:8080/message
+
+вида
+```json
+{
+   "name":       "имя отправителя",
+   "message":    "history 10"
+}
+```
+В результате запроса будут выданы сообщения из БД текущего пользователя
+
+
+
+### Подготовка контейнера приложения
+1. build JAR package
+   - mvn clean package
+2. build docker image
+   - docker build -t inside_docker_sample
+
+### Запуск приложения
+   a. (Вариант 1) Запуск в консоли
+   - docker run inside_docker_sample -p 8080:8080 -d
+
+   b. (Вариант 2) Через composer
+   - docker-composer up -d
+      
+

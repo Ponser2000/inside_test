@@ -21,7 +21,7 @@ public class MyUser extends AbstractNamedEntity {
     @NotBlank
     private String role;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "myUser")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Message> messages;
 

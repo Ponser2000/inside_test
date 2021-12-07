@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+
+  inside:
+    image: inside_docker_sample
+    container_name: inside
+    ports:
+      - 8080:8080
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - /etc/localtime:/etc/localtime
