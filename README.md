@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/a68b123692e44b5a822fff8f1a505948)](https://www.codacy.com/gh/Ponser2000/inside_test/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Ponser2000/inside_test&amp;utm_campaign=Badge_Grade)
+
 ### Описание
 
 RESTful приложение на Spring Boot.
