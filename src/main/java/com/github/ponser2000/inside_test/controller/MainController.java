@@ -22,26 +22,6 @@ public class MainController {
     @Autowired
     private MessageService messageService;
 
-    @GetMapping("/")
-    public String hello() {
-        return "Hello!";
-    }
-
-    @GetMapping(value = "/getall", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<MessageTo>> getAllMessageByUser(HttpServletRequest request) {
-        final String authorizationHeader = request.getHeader("Authorization");
-
-        String jwt = null;
-        List<MessageTo> result = new ArrayList<>();
-
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            jwt = authorizationHeader.substring(7);
-            result = messageService.getAllMessages(jwt);
-
-        }
-        return ResponseEntity.ok().body(result);
-    }
-
     @PostMapping("/message")
     public ResponseEntity<List<MessageTo>> message(HttpServletRequest request, @RequestBody MessageRequest messageRequest) {
         final String authorizationHeader = request.getHeader("Authorization");
@@ -56,6 +36,5 @@ public class MainController {
         }
         return ResponseEntity.ok().body(result);
     }
-
 
 }
